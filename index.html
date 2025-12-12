@@ -1,0 +1,969 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Shia Kids GK Chapter 3</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  font-family:Arial,sans-serif;
+  /* ✅ More visible background (LESS transparency) */
+  background-image:
+    linear-gradient(
+      135deg,
+      rgba(99,102,241,0.40),
+      rgba(236,72,153,0.35)
+    ),
+    url('Background.png');
+  background-size:cover;
+  background-position:center;
+  background-attachment:fixed;
+  background-repeat:no-repeat;
+  min-height:100vh;
+  padding:20px;
+  padding-bottom:80px; /* space for footer */
+}
+
+#a{
+  max-width:900px;
+  margin:0 auto;
+  background:rgba(255,255,255,0.96);
+  border-radius:24px;
+  box-shadow:0 24px 70px rgba(15,23,42,0.35);
+  padding:22px 28px 28px;
+  border-top:6px solid #6366f1;
+  backdrop-filter:blur(12px);
+}
+
+.h{text-align:center;margin-bottom:18px;}
+
+/* Header logo */
+.logo{
+  width:100%;
+  display:flex;
+  justify-content:flex-start;
+  align-items:center;
+  margin-bottom:6px;
+}
+.logo-img{
+  height:58px;
+  width:auto;
+  margin-left:5px;
+  display:block;
+  border-radius:16px;
+  box-shadow:0 8px 18px rgba(148,163,184,0.7);
+  background:#fff;
+}
+@media (max-width:600px){
+  .logo-img{ height:46px; }
+}
+
+.h h1{
+  color:#111827;
+  font-size:30px;
+  margin-top:4px;
+}
+.h .designer{
+  font-size:14px;
+  color:#6b7280;
+  font-style:italic;
+  margin-top:4px;
+}
+.ci{
+  font-size:14px;
+  color:#4b5563;
+  margin-top:8px;
+}
+
+/* ✅ Ayat */
+.ayat-img{
+  text-align:center;
+  margin-bottom:8px;
+}
+.ayat-img img{
+  width:220px;
+  max-width:100%;
+  height:auto;
+  display:inline-block;
+}
+@media (max-width:600px){
+  .ayat-img img{ width:150px; }
+}
+
+/* Language bar */
+.langbar{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:8px;
+  margin-top:10px;
+  flex-wrap:wrap;
+}
+.langbar label{
+  font-size:13px;
+  color:#4b5563;
+  font-weight:700;
+}
+.langbar select{
+  padding:8px 10px;
+  border:1px solid #d1d5db;
+  border-radius:12px;
+  font-size:13px;
+  background:#fff;
+  cursor:pointer;
+}
+.langhint{
+  font-size:12px;
+  color:#6b7280;
+}
+
+/* Colorful header box */
+.header-box{
+  position:relative;
+  padding:18px 16px 16px;
+  border-radius:22px;
+  margin-top:4px;
+  margin-bottom:18px;
+  overflow:hidden;
+  background:
+    radial-gradient(900px 300px at 10% 10%, rgba(255,255,255,.22), transparent 60%),
+    radial-gradient(900px 300px at 90% 0%, rgba(255,255,255,.18), transparent 55%),
+    linear-gradient(135deg, #6366f1, #ec4899);
+  box-shadow:0 18px 40px rgba(17,24,39,.25);
+  border:1px solid rgba(255,255,255,.22);
+  isolation:isolate;
+}
+.header-box::after{
+  content:"";
+  position:absolute;
+  inset:-2px;
+  background:
+    radial-gradient(300px 180px at 20% 30%, rgba(255,255,255,.22), transparent 60%),
+    radial-gradient(320px 220px at 85% 65%, rgba(255,255,255,.18), transparent 62%);
+  pointer-events:none;
+  z-index:0;
+}
+.header-box > *{ position:relative; z-index:1; }
+.header-box h1{ color:#fff; text-shadow:0 10px 26px rgba(0,0,0,.25); }
+.header-box .designer,.header-box .ci{ color:rgba(255,255,255,.90); }
+.header-box .langbar label{ color:rgba(255,255,255,.95); }
+.header-box .langhint{ color:rgba(255,255,255,.85); }
+.header-box .langbar select{
+  border:1px solid rgba(255,255,255,.35);
+  background:rgba(255,255,255,.92);
+  box-shadow:0 10px 22px rgba(0,0,0,.15);
+}
+.header-box .ci{
+  display:inline-block;
+  margin-top:10px;
+  padding:10px 12px;
+  border-radius:16px;
+  background:rgba(255,255,255,.16);
+  border:1px solid rgba(255,255,255,.28);
+  backdrop-filter:blur(10px);
+}
+
+/* Progress / meta */
+.pi{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  margin-bottom:12px;
+  flex-wrap:wrap;
+  gap:8px;
+  font-size:14px;
+  color:#4b5563;
+}
+.pi-left{display:flex;flex-direction:column;gap:4px;}
+.pi-right{display:flex;flex-wrap:wrap;gap:6px;justify-content:flex-end;}
+.qt{
+  background:#e0e7ff;
+  color:#4338ca;
+  padding:4px 10px;
+  border-radius:999px;
+  font-size:12px;
+  font-weight:600;
+}
+.qt.flagged{ background:#fee2e2; color:#b91c1c; }
+.pb{
+  width:100%;
+  height:8px;
+  background:#e5e7eb;
+  border-radius:999px;
+  margin-bottom:24px;
+  overflow:hidden;
+}
+.pf{
+  height:100%;
+  background:linear-gradient(90deg,#6366f1,#ec4899);
+  transition:width .3s;
+}
+
+.q{
+  font-size:26px;
+  font-weight:700;
+  color:#111827;
+  margin-bottom:18px;
+}
+.os{margin-bottom:18px;}
+
+.o{
+  background:#f9fafb;
+  border:2px solid #e5e7eb;
+  border-radius:14px;
+  padding:14px 16px;
+  margin-bottom:10px;
+  cursor:pointer;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  transition:all .18s ease;
+}
+.o:hover:not(.l){
+  border-color:#a855f7;
+  box-shadow:0 4px 10px rgba(148,163,184,0.45);
+}
+.o:active:not(.l){
+  border-color:#3b82f6;
+  background:#eff6ff;
+}
+.o span:first-child{ color:#111827; font-size:20px; }
+.o.s{ background:#e0f2fe; border-color:#3b82f6; }
+.o.co{ background:#dcfce7; border-color:#16a34a; }
+.o.w{ background:#fee2e2; border-color:#ef4444; }
+.o.l{ cursor:not-allowed; }
+
+/* Feedback */
+.fb{
+  padding:14px 16px;
+  border-radius:14px;
+  margin-bottom:12px;
+  font-weight:600;
+  font-size:15px;
+}
+.fb.co{ background:#dcfce7; border:2px solid #16a34a; color:#065f46; }
+.fb.ic{ background:#fee2e2; border:2px solid #ef4444; color:#991b1b; }
+
+/* Buttons */
+button{
+  width:100%;
+  padding:13px 16px;
+  border:none;
+  border-radius:999px;
+  font-size:15px;
+  font-weight:600;
+  cursor:pointer;
+  transition:transform .12s ease, box-shadow .12s ease, opacity .12s ease;
+}
+button:disabled{
+  background:#d1d5db;
+  color:#9ca3af;
+  cursor:not-allowed;
+  box-shadow:none;
+  transform:none;
+}
+button:not(:disabled):hover{
+  box-shadow:0 8px 16px rgba(148,163,184,0.7);
+  transform:translateY(-1px);
+}
+button:not(:disabled):active{
+  transform:translateY(0);
+  box-shadow:0 4px 10px rgba(148,163,184,0.6);
+}
+.sb{ background:linear-gradient(135deg,#6366f1,#ec4899); color:#fff; }
+.nb{ background:linear-gradient(135deg,#22c55e,#14b8a6); color:#fff; }
+.skb{ background:linear-gradient(135deg,#f97316,#facc15); color:#fff; margin-top:10px; }
+.fgb{ background:linear-gradient(135deg,#ef4444,#f97316); color:#fff; margin-top:10px; }
+.wa-btn{ background:linear-gradient(135deg,#25D366,#128C7E); color:#fff; }
+
+.btn-row{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  margin-top:10px;
+}
+
+/* Results */
+.r{text-align:center;}
+.sc{
+  font-size:64px;
+  font-weight:800;
+  margin:26px 0 10px;
+}
+.sc.e{color:#16a34a;}
+.sc.g{color:#f97316;}
+.sc.p{color:#ef4444;}
+.r p{color:#4b5563;margin-top:4px;}
+
+/* Start / Reg */
+.start-screen,.reg-screen{text-align:center;padding:10px 10px 0;}
+.start-info{
+  background:#f9fafb;
+  border-radius:18px;
+  padding:18px;
+  margin-bottom:18px;
+  text-align:left;
+  border:1px solid #e5e7eb;
+}
+.start-info h3{color:#111827;margin-bottom:8px;font-size:15px;}
+.start-info ul{margin-left:18px;color:#4b5563;font-size:14px;}
+.start-info li{margin-bottom:4px;}
+
+.reg-form{
+  max-width:420px;
+  margin:0 auto;
+  text-align:left;
+  background:#f9fafb;
+  border-radius:18px;
+  padding:20px 18px 18px;
+  border:1px solid #e5e7eb;
+  box-shadow:0 12px 30px rgba(148,163,184,0.55);
+}
+.reg-field{margin-bottom:14px;}
+.reg-field label{
+  display:block;
+  font-size:14px;
+  font-weight:600;
+  color:#374151;
+  margin-bottom:4px;
+}
+.reg-field input{
+  width:100%;
+  padding:10px 12px;
+  border-radius:12px;
+  border:1px solid #d1d5db;
+  font-size:14px;
+  background:#fff;
+}
+.reg-field input:focus{
+  outline:none;
+  border-color:#6366f1;
+  box-shadow:0 0 0 1px rgba(99,102,241,0.3);
+}
+.reg-error{
+  color:#b91c1c;
+  font-size:13px;
+  margin-bottom:10px;
+  display:none;
+}
+
+/* Footer */
+#pageFooter{
+  position:fixed;
+  left:0;right:0;bottom:0;
+  z-index:9999;
+  text-align:center;
+  padding:10px 12px;
+  font-size:13px;
+  font-weight:800;
+  letter-spacing:.3px;
+  color:rgba(255,255,255,.92);
+  background:linear-gradient(135deg, rgba(99,102,241,.55), rgba(236,72,153,.45));
+  backdrop-filter: blur(10px);
+  border-top:1px solid rgba(255,255,255,.25);
+}
+</style>
+</head>
+
+<body>
+  <div id="a"></div>
+  <div id="pageFooter">@IFA Learning Hub 2026</div>
+
+<script>
+var cq=0, ua={}, lq={}, sr=0, APP=document.getElementById('a');
+var stName="", stDob="";
+var fq = {}; // flagged questions
+
+/* TIMERS */
+var totalTime = 3600;      // 1 hour total
+var totalInterval = null;
+var questionTime = 30;     // per question seconds
+var qRemaining = questionTime;
+var qInterval = null;
+
+/* =========================
+   LANGUAGE SYSTEM
+   ========================= */
+var LANG_KEY = "quizLanguage";
+function getLang(){ return localStorage.getItem("quizLanguage") || "ur"; }
+function setLang(v){ localStorage.setItem("quizLanguage", v); }
+
+function split3(txt){
+  var parts = String(txt||"").split(" | ");
+  return { ur: parts[0]||"", en: parts[1]||parts[0]||"", ru: parts[2]||parts[1]||parts[0]||"" };
+}
+function t(txt){
+  var p = split3(txt);
+  var l = getLang();
+  return (l==="en"?p.en : l==="ru"?p.ru : p.ur);
+}
+function langBarHTML(){
+  var l = getLang();
+  return ''+
+  '<div class="langbar">'+
+    '<label>'+t("زبان | Language | Язык")+'</label>'+
+    '<select id="langSelect" onchange="handleLangChange(this.value)">'+
+      '<option value="ur" '+(l==="ur"?"selected":"")+'>اردو</option>'+
+      '<option value="en" '+(l==="en"?"selected":"")+'>English</option>'+
+      '<option value="ru" '+(l==="ru"?"selected":"")+'>Русский</option>'+
+    '</select>'+
+    '<span class="langhint">'+t("جب چاہیں تبدیل کریں | Switch anytime | Можно менять в любой момент")+'</span>'+
+  '</div>';
+}
+function handleLangChange(v){
+  setLang(v);
+  if(document.getElementById("regName") || document.getElementById("regDob")) showRegister();
+  else if(document.querySelector(".start-screen")) showStart();
+  else if(document.querySelector(".r")) rr();
+  else rq();
+}
+
+/* =========================
+   UI TEXT DICTIONARY
+   ========================= */
+var UI = {
+  ur: {
+    title: "Shia Kids GK Chapter 3",
+    designer: "ڈیزائن: ام فروا سیدۂ · DG Skills",
+    candidate: "امتحانی امیدوار",
+    dob: "تاریخ پیدائش",
+
+    registerMsg: "کوئز شروع کرنے سے پہلے براہِ کرم اپنی معلومات درج کریں۔",
+    fullName: "پورا نام",
+    dobLabel: "تاریخ پیدائش",
+    regError: "براہِ کرم نام اور تاریخِ پیدائش درج کریں۔",
+    registerBtn: "رجسٹر کریں اور جاری رکھیں",
+
+    quizInfo: "کوئز کی معلومات",
+    totalTestTime: "کل ٹیسٹ کا وقت: 1 گھنٹہ",
+    eachQuestionTime: "ہر سوال کا وقت",
+    questionsCount: "کل سوالات: 20",
+    randomOrder: "ہر بار سوالات رینڈم ہوں گے",
+    controls: "Previous, Skip اور Flag استعمال کریں",
+    emailInfo: "نتیجہ DG Skills کو ای میل کیا جا سکتا ہے",
+    startBtn: "کوئز شروع کریں",
+
+    question: "سوال",
+    of: "میں سے",
+    totalTime: "کل وقت",
+    questionTime: "سوال کا وقت",
+
+    submit: "جواب جمع کریں",
+    next: "اگلا سوال",
+    viewResults: "نتائج دیکھیں",
+    prev: "پچھلا سوال",
+    skip: "سوال چھوڑ دیں",
+    flag: "سوال نشان زد کریں",
+    unflag: "نشان ہٹائیں",
+    flagged: "نشان زد",
+    single: "سنگل انتخاب",
+    multiple: "متعدد انتخاب",
+
+    correct: "درست!",
+    incorrect: "غلط",
+
+    complete: "کوئز مکمل!",
+    scored: "آپ نے حاصل کیا",
+    outOf: "میں سے",
+    noteAttempt: "نوٹ: یہ آپ کی",
+    attemptWord: "ویں کوشش ہے۔",
+    emailBtn: "نتیجہ ای میل کریں",
+    restart: "ختم کریں اور دوبارہ شروع کریں"
+  },
+
+  en: {
+    title: "Shia Kids GK Chapter 3",
+    designer: "Designed by Ume Farwa Syeda · DG Skills",
+    candidate: "Candidate",
+    dob: "DOB",
+
+    registerMsg: "Please register your details before starting the quiz.",
+    fullName: "Full Name",
+    dobLabel: "Date of Birth",
+    regError: "Please enter your name and date of birth.",
+    registerBtn: "Register & Continue",
+
+    quizInfo: "Quiz Information",
+    totalTestTime: "Total test time: 1 hour",
+    eachQuestionTime: "Each question time",
+    questionsCount: "Total questions: 20",
+    randomOrder: "Questions appear in random order each attempt",
+    controls: "Use Previous, Skip and Flag to manage your time",
+    emailInfo: "Final score can be emailed directly to DG Skills",
+    startBtn: "Start Quiz",
+
+    question: "Question",
+    of: "of",
+    totalTime: "Total time",
+    questionTime: "Question time",
+
+    submit: "Submit Answer",
+    next: "Next Question",
+    viewResults: "View Results",
+    prev: "Previous Question",
+    skip: "Skip Question",
+    flag: "Flag Question",
+    unflag: "Unflag",
+    flagged: "Flagged",
+    single: "Single Select",
+    multiple: "Multiple Select",
+
+    correct: "Correct!",
+    incorrect: "Incorrect",
+
+    complete: "Quiz Complete!",
+    scored: "You scored",
+    outOf: "out of",
+    noteAttempt: "Note: This is your",
+    attemptWord: "attempt.",
+    emailBtn: "Email Result to DG Skills",
+    restart: "End & Restart"
+  },
+
+  ru: {
+    title: "Shia Kids GK Chapter 3",
+    designer: "Дизайн: Ume Farwa Syeda · DG Skills",
+    candidate: "Кандидат",
+    dob: "Дата рождения",
+
+    registerMsg: "Пожалуйста, введите данные перед началом викторины.",
+    fullName: "Полное имя",
+    dobLabel: "Дата рождения",
+    regError: "Пожалуйста, введите имя и дату рождения.",
+    registerBtn: "Зарегистрироваться и продолжить",
+
+    quizInfo: "Информация о викторине",
+    totalTestTime: "Общее время теста: 1 час",
+    eachQuestionTime: "Время на вопрос",
+    questionsCount: "Всего вопросов: 20",
+    randomOrder: "Вопросы появляются в случайном порядке",
+    controls: "Используйте Previous, Skip и Flag",
+    emailInfo: "Результат можно отправить в DG Skills",
+    startBtn: "Начать",
+
+    question: "Вопрос",
+    of: "из",
+    totalTime: "Общее время",
+    questionTime: "Время вопроса",
+
+    submit: "Отправить ответ",
+    next: "Следующий вопрос",
+    viewResults: "Посмотреть результат",
+    prev: "Предыдущий вопрос",
+    skip: "Пропустить",
+    flag: "Отметить",
+    unflag: "Снять отметку",
+    flagged: "Отмечено",
+    single: "Один вариант",
+    multiple: "Несколько вариантов",
+
+    correct: "Верно!",
+    incorrect: "Неверно",
+
+    complete: "Викторина завершена!",
+    scored: "Ваш результат",
+    outOf: "из",
+    noteAttempt: "Примечание: это ваша",
+    attemptWord: "попытка.",
+    emailBtn: "Отправить результат в DG Skills",
+    restart: "Завершить и начать заново"
+  }
+};
+function ui(key){
+  var l=getLang();
+  return (UI[l] && UI[l][key]) ? UI[l][key] : key;
+}
+
+/* AYAT + LOGO */
+function ayatHTML(){ return '<div class="ayat-img"><img src="ayat.png" alt="Ayat"></div>'; }
+function logoHTML(){ return '<div class="logo"><img src="dg skills logo.png" class="logo-img" alt="DG Skills Logo"></div>'; }
+
+/* FORMAT TIME mm:ss */
+function formatTime(sec){
+  var m=Math.floor(sec/60), s=sec%60;
+  return String(m).padStart(2,'0')+':'+String(s).padStart(2,'0');
+}
+function updateTimerLabels(){
+  var t1=document.getElementById('totalTimer');
+  var t2=document.getElementById('questionTimer');
+  if(t1) t1.textContent = formatTime(totalTime);
+  if(t2) t2.textContent = formatTime(qRemaining);
+}
+function stopTimers(){
+  if(totalInterval) clearInterval(totalInterval);
+  if(qInterval) clearInterval(qInterval);
+  totalInterval=null; qInterval=null;
+}
+function startTotalTimer(){
+  if(totalInterval) clearInterval(totalInterval);
+  totalInterval=setInterval(function(){
+    if(totalTime>0){
+      totalTime--; updateTimerLabels();
+      if(totalTime<=0){ totalTime=0; updateTimerLabels(); stopTimers(); rr(); }
+    }
+  },1000);
+}
+function startQuestionTimer(){
+  if(qInterval) clearInterval(qInterval);
+  qRemaining=questionTime; updateTimerLabels();
+  qInterval=setInterval(function(){
+    if(qRemaining>0){
+      qRemaining--; updateTimerLabels();
+      if(qRemaining<=0){
+        qRemaining=0; updateTimerLabels();
+        clearInterval(qInterval);
+        var qId=qs[cq].i;
+        if(!lq[qId]) lq[qId]=1;
+        if(cq<qs.length-1){ cq++; startQuestionTimer(); rq(); }
+        else rr();
+      }
+    }
+  },1000);
+}
+
+/* ✅ QUESTION BANK — ONLY THIS PART CHANGED */
+var qs = [
+
+ {i:1, q:"'رب ہب لی من لدنک ذریۃً طیبةً' کس کے لیے دعا ہے؟ | For what is the prayer 'Rabbi hab li min ladunka dhurriyyatan tayyibah'? | О чем мольба «Рабби хаб ли мин ладунка зуррийятан таййиба»?",
+  o:["صحت | Health | Здоровье","علم | Knowledge | Знания","نیک اولاد | Righteous children | Праведные дети","گھر | Home | Дом"],
+  c:[2], m:0},
+
+ {i:2, q:"'ربنا ہب لنا من ازواجنا و ذریاتنا' کس کے لیے دعا ہے؟ | This prayer is for what? | О чем эта мольба?",
+  o:["مشکلات سے نجات | Relief from problems | Избавление от трудностей","نیک گھرانے کے لیے | For a righteous family | За благочестивую семью","بیماری کے علاج کے لیے | For cure from illness | За исцеление","رزق کے لیے | For sustenance | За пропитание"],
+  c:[1], m:0},
+
+ {i:3, q:"اللہ کتنے ہیں؟ | How many Gods are there? | Сколько Богов?",
+  o:["دو | Two | Два","تین | Three | Три","ایک | One | Один","چار | Four | Четыре"],
+  c:[2], m:0},
+
+ {i:4, q:"پنجتن پاک کتنے ہیں؟ | How many are Panjtan Pak? | Сколько Панжтан Пак?",
+  o:["3 | 3 | 3","4 | 4 | 4","5 | 5 | 5","6 | 6 | 6"],
+  c:[2], m:0},
+
+ {i:5, q:"ائمہ کی تعداد کتنی ہے؟ | How many Imams are there? | Сколько Имамов?",
+  o:["10 | 10 | 10","11 | 11 | 11","12 | 12 | 12","14 | 14 | 14"],
+  c:[2], m:0},
+
+ {i:6, q:"14 معصومین کی تعداد کتنی ہے؟ | How many Masoomeen are there? | Сколько Масумов?",
+  o:["12 | 12 | 12","13 | 13 | 13","14 | 14 | 14","15 | 15 | 15"],
+  c:[2], m:0},
+
+ {i:7, q:"انبیاء کی تعداد کتنی بتائی گئی ہے؟ | How many Prophets are mentioned (in narrations)? | Сколько пророков упоминается (в преданиях)?",
+  o:["100,000 | 100,000 | 100 000","1,24,000 | 124,000 | 124 000","1,00,000 | 100,000 | 100 000","24,000 | 24,000 | 24 000"],
+  c:[1], m:0},
+
+ {i:8, q:"رسولوں کی تعداد کتنی ہے؟ | How many Messengers (Rusul) are there? | Сколько посланников (русуль)?",
+  o:["100 | 100 | 100","1000 | 1000 | 1000","313 | 313 | 313","124 | 124 | 124"],
+  c:[2], m:0},
+
+ {i:9, q:"بڑے رسول کتنے ہیں؟ | How many great Messengers are there? | Сколько великих посланников?",
+  o:["3 | 3 | 3","4 | 4 | 4","5 | 5 | 5","6 | 6 | 6"],
+  c:[2], m:0},
+
+ {i:10, q:"آسمانی کتابیں کتنی ہیں؟ | How many divine books are there? | Сколько небесных книг?",
+  o:["2 | 2 | 2","3 | 3 | 3","4 | 4 | 4","5 | 5 | 5"],
+  c:[2], m:0},
+
+ {i:11, q:"کربلا کے شہید کتنے تھے؟ | How many martyrs of Karbala were there? | Сколько было мучеников Карбалы?",
+  o:["70 | 70 | 70","72 | 72 | 72","75 | 75 | 75","80 | 80 | 80"],
+  c:[1], m:0},
+
+ {i:12, q:"ہم کون ہیں؟ | Who are we? | Кто мы?",
+  o:["سنی مسلمان | Sunni Muslim | Суннит","شیعہ زیدی | Zaidi Shia | Заидит","شیعہ اثنا عشری | Twelver Shia | Двунадесятник (шиит)","حنبلی مسلمان | Hanbali Muslim | Ханбалит"],
+  c:[2], m:0},
+
+ {i:13, q:"علم (Alam) کیا ہے؟ | What is Alam? | Что такое Алам?",
+  o:["فوج کا جھنڈا | Army flag | Военный флаг","مذہبی نشان | Religious symbol | Религиозный символ","قرآن کا نام | Name of Quran | Название Корана","کعبہ کی دیوار | Kaaba wall | Стена Каабы"],
+  c:[1], m:0},
+
+ {i:14, q:"اللہ کون ہے؟ | Who is Allah? | Кто такой Аллах?",
+  o:["ایک نبی | A Prophet | Пророк","آخری رسول | Final Messenger | Последний посланник","ہمارا خالق | Our Creator | Наш Творец","ایک فرشتہ | An Angel | Ангел"],
+  c:[2], m:0},
+
+ {i:15, q:"حضرت محمد ﷺ کون ہیں؟ | Who is Prophet Muhammad (PBUH)? | Кто Пророк Мухаммад (мир ему)?",
+  o:["پہلے نبی | First Prophet | Первый пророк","آخری نبی | Last Prophet | Последний пророк","دسویں امام | Tenth Imam | Десятый имам","فرشتہ | Angel | Ангел"],
+  c:[1], m:0},
+
+ {i:16, q:"12 امام کون ہیں؟ | Who are the 12 Imams? | Кто такие 12 имамов?",
+  o:["پیغمبر | Prophets | Пророки","فرشتے | Angels | Ангелы","ہمارے رہبر | Our leaders | Наши руководители","صحابہ | Companions | Сподвижники"],
+  c:[2], m:0},
+
+ {i:17, q:"کعبہ کیا ہے؟ | What is the Kaaba? | Что такое Кааба?",
+  o:["مسجد نبوی | Masjid Nabawi | Мечеть Пророка","قبلہ | Qibla | Кибла","ایک قبر | A grave | Могила","پہاڑ | Mountain | Гора"],
+  c:[1], m:0},
+
+ {i:18, q:"قرآن کیا ہے؟ | What is the Quran? | Что такое Коран?",
+  o:["تاریخ کی کتاب | A history book | Историческая книга","ریاضی کی کتاب | A math book | Книга по математике","ہماری مذہبی کتاب | Our holy book | Наша священная книга","نذرانہ | A gift | Подарок"],
+  c:[2], m:0},
+
+ {i:19, q:"پنجتن پاک کے نام کون سے ہیں؟ | Who are the Panjtan Pak? | Кто входят в Панжтан Пак?",
+  o:[
+    "نبی، جبریل، میکائیل، اسرافیل، عزرائیل | Prophet, Jibra'il, Mika'il, Israfil, Azra'il | Пророк, Джибриль, Микаиль, Исрафиль, Азраиль",
+    "موسیٰ، عیسیٰ، ابراہیم، یعقوب، یوسف | Musa, Isa, Ibrahim, Ya'qub, Yusuf | Муса, Иса, Ибрахим, Якуб, Юсуф",
+    "محمد ﷺ، حسن، حسین، فاطمہ، علیؑ | Muhammad, Hasan, Husayn, Fatimah, Ali | Мухаммад, Хасан, Хусейн, Фатима, Али",
+    "آدم، نوح، داؤد، سلیمان، یونس | Adam, Nuh, Dawud, Sulayman, Yunus | Адам, Нух, Давуд, Сулейман, Юнус"
+  ],
+  c:[2], m:0},
+
+ {i:20, q:"اصولِ دین کتنے ہیں؟ | How many Usool-e-Deen are there? | Сколько основ веры (усуль ад-дин)?",
+  o:["3 | 3 | 3","4 | 4 | 4","5 | 5 | 5","6 | 6 | 6"],
+  c:[2], m:0}
+
+];
+
+/* SHUFFLE QUESTIONS */
+function shuffleQuestions(){
+  for (var i = qs.length - 1; i > 0; i--) {
+    var j = Math.floor(Math.random() * (i + 1));
+    var tmp = qs[i]; qs[i] = qs[j]; qs[j] = tmp;
+  }
+}
+
+/* CHECK ANSWER */
+function ic(qid){
+  var q=null;
+  for(var i=0;i<qs.length;i++){ if(qs[i].i===qid){ q=qs[i]; break; } }
+  if(!q) return 0;
+  var a=ua[qid]||[];
+  if(a.length!==q.c.length) return 0;
+  for(var j=0;j<q.c.length;j++){ if(a.indexOf(q.c[j])===-1) return 0; }
+  return 1;
+}
+
+/* RENDER QUESTION */
+function rq(){
+  var q=qs[cq], il=lq[q.i], a=ua[q.i]||[];
+  var pg=((cq+1)/qs.length)*100;
+  var isFlagged=!!fq[q.i];
+
+  var h='';
+  h += ayatHTML();
+  h+='<div class="h header-box">'+
+       logoHTML()+
+       '<h1>'+ui("title")+'</h1>'+
+       '<div class="designer">'+ui("designer")+'</div>'+
+       langBarHTML()+
+       (stName?'<div class="ci">'+ui("candidate")+': <strong>'+stName+
+               '</strong> | '+ui("dob")+': <strong>'+stDob+'</strong></div>':'')+
+     '</div>';
+
+  h+='<div class="pi">'+
+       '<div class="pi-left">'+
+         '<span>'+ui("question")+' '+(cq+1)+' '+ui("of")+' '+qs.length+'</span>'+
+         '<span style="font-size:12px;color:#6b7280;">'+ui("totalTime")+': <span id="totalTimer"></span> · '+ui("questionTime")+': <span id="questionTimer"></span></span>'+
+       '</div>'+
+       '<div class="pi-right">'+
+         '<span class="qt">'+(q.m?ui("multiple"):ui("single"))+'</span>'+
+         (isFlagged?'<span class="qt flagged">'+ui("flagged")+'</span>':'')+
+       '</div>'+
+     '</div>';
+
+  h+='<div class="pb"><div class="pf" style="width:'+pg+'%"></div></div>';
+  h+='<div class="q">'+t(q.q)+'</div><div class="os">';
+
+  for(var j=0;j<q.o.length;j++){
+    var sl=a.indexOf(j)!==-1;
+    var cr=q.c.indexOf(j)!==-1;
+    var cl='o';
+    if(il){ cl+=' l'; if(cr) cl+=' co'; else if(sl) cl+=' w'; }
+    else if(sl){ cl+=' s'; }
+
+    var letter = String.fromCharCode(65+j);
+    h+='<div class="'+cl+'" '+(il?'':'onclick="so('+j+')"')+'>'+
+         '<span><strong>'+letter+'. </strong>'+t(q.o[j])+'</span>'+
+         (il && cr ? '<span>&#10003;</span>' : il && sl ? '<span>&#10007;</span>' : '')+
+       '</div>';
+  }
+  h+='</div>';
+
+  if(il){
+    h+='<div class="fb '+(ic(q.i)?'co':'ic')+'">'+
+       (ic(q.i)?'&#10003; '+ui("correct"):'&#10007; '+ui("incorrect"))+
+       '</div>'+
+       '<button class="nb" onclick="nq()">'+(cq===qs.length-1?ui("viewResults"):ui("next"))+'</button>';
+  }else{
+    h+='<button class="sb" onclick="sa()"'+(a.length===0?' disabled':'')+'>'+ui("submit")+'</button>'+
+       '<button class="skb" onclick="skq()">'+ui("skip")+'</button>';
+  }
+
+  h+='<div class="btn-row">'+
+       '<button class="nb" onclick="prevQ()"'+(cq===0?' disabled':'')+'>'+ui("prev")+'</button>'+
+       '<button class="fgb" onclick="toggleFlag()">'+(isFlagged?ui("unflag"):ui("flag"))+'</button>'+
+     '</div>';
+
+  APP.innerHTML=h;
+  updateTimerLabels();
+}
+
+/* OPTIONS */
+function so(ix){
+  var q=qs[cq]; if(lq[q.i]) return;
+  var a=ua[q.i]||[];
+  if(q.m){
+    var f=a.indexOf(ix);
+    if(f!==-1) a.splice(f,1); else a.push(ix);
+  }else a=[ix];
+  ua[q.i]=a;
+  rq();
+}
+function sa(){ lq[qs[cq].i]=1; rq(); }
+function skq(){ if(cq<qs.length-1){ cq++; startQuestionTimer(); rq(); } else rr(); }
+function nq(){ if(cq<qs.length-1){ cq++; startQuestionTimer(); rq(); } else rr(); }
+function prevQ(){ if(cq>0){ cq--; startQuestionTimer(); rq(); } }
+function toggleFlag(){ var qId=qs[cq].i; if(fq[qId]) delete fq[qId]; else fq[qId]=true; rq(); }
+
+/* RESULTS */
+function rr(){
+  stopTimers();
+  var ct=0;
+  for(var j=0;j<qs.length;j++){ if(ic(qs[j].i)) ct++; }
+  var pt=Math.round((ct/qs.length)*100);
+
+  /* attempt tracking – reset after 3 attempts */
+  var key = 'shiaKidsGKVol1_' + stName + '_' + stDob;
+  var previousAttempts = parseInt(localStorage.getItem(key) || '0', 10);
+  if (previousAttempts >= 3) previousAttempts = 0;
+  var currentAttempt = previousAttempts + 1;
+  localStorage.setItem(key, currentAttempt);
+
+  var subject=encodeURIComponent("Shia Kids GK Chapter 3 Result - "+stName);
+  var body="Shia Kids GK Chapter 3 Result%0D%0A%0D%0A"+
+           "Name: "+stName+"%0D%0A"+
+           "DOB: "+stDob+"%0D%0A"+
+           "Attempt: "+currentAttempt+"%0D%0A"+
+           "Score: "+pt+"%25 ("+ct+" out of "+qs.length+" correct)%0D%0A%0D%0A"+
+           "DG Skills Auto Summary.";
+  var mailLink="mailto:dgskills4u@gmail.com?subject="+subject+"&body="+body;
+
+  var waText =
+    "Shia Kids GK Chapter 3 Result%0A%0A" +
+    "Name: " + encodeURIComponent(stName) + "%0A" +
+    "DOB: " + encodeURIComponent(stDob) + "%0A" +
+    "Attempt: " + currentAttempt + "%0A" +
+    "Score: " + pt + "%25 (" + ct + "/" + qs.length + ")%0A%0A" +
+    "Shared via IFA Learning Hub";
+  var waLink = "https://wa.me/447470831407?text=" + waText;
+
+  var h='';
+  h += ayatHTML();
+  h+='<div class="h header-box">'+
+       logoHTML()+
+       '<h1>'+ui("title")+'</h1>'+
+       '<div class="designer">'+ui("designer")+'</div>'+
+       langBarHTML()+
+       '<div class="ci">'+ui("candidate")+': <strong>'+stName+'</strong> | '+ui("dob")+': <strong>'+stDob+'</strong></div>'+
+     '</div>';
+
+  h+='<div class="r">'+
+       '<h2>'+ui("complete")+'</h2>'+
+       '<div class="sc '+(pt>=70?'e':pt>=50?'g':'p')+'">'+pt+'%</div>'+
+       '<p>'+ui("scored")+' '+ct+' '+ui("outOf")+' '+qs.length+' '+t("سوالات | questions | вопросов")+'.</p>';
+
+  if(currentAttempt>1){
+    h+='<p style="margin-top:8px;color:#b91c1c;font-weight:700;">'+ui("noteAttempt")+' '+currentAttempt+' '+ui("attemptWord")+'</p>';
+  }
+
+  h+='<div style="margin-top:25px; display:flex; flex-direction:column; gap:10px;">'+
+        '<a href="'+mailLink+'"><button class="sb">'+ui("emailBtn")+'</button></a>'+
+        '<a href="'+waLink+'" target="_blank"><button class="wa-btn">Share Result on WhatsApp</button></a>'+
+        '<button class="skb" onclick="goToRegistration()">'+ui("restart")+'</button>'+
+      '</div>'+
+     '</div>';
+
+  APP.innerHTML=h;
+}
+
+/* RESET TO REGISTRATION */
+function goToRegistration(){
+  stopTimers();
+  cq=0; ua={}; lq={}; fq={}; sr=0;
+  stName=""; stDob="";
+  totalTime=3600;
+  showRegister();
+}
+
+/* REGISTRATION */
+function showRegister(){
+  stopTimers();
+  var h='';
+  h += ayatHTML();
+  h+='<div class="reg-screen">'+
+       '<div class="h header-box">'+
+         logoHTML()+
+         '<h1>'+ui("title")+'</h1>'+
+         '<div class="designer">'+ui("designer")+'</div>'+
+         langBarHTML()+
+       '</div>'+
+       '<p>'+ui("registerMsg")+'</p>'+
+       '<div class="reg-form">'+
+         '<div class="reg-error" id="regError">'+ui("regError")+'</div>'+
+         '<div class="reg-field">'+
+           '<label for="regName">'+ui("fullName")+'</label>'+
+           '<input type="text" id="regName" placeholder="'+ui("fullName")+'">'+
+         '</div>'+
+         '<div class="reg-field">'+
+           '<label for="regDob">'+ui("dobLabel")+'</label>'+
+           '<input type="date" id="regDob">'+
+         '</div>'+
+         '<button class="sb" onclick="handleRegister()">'+ui("registerBtn")+'</button>'+
+       '</div>'+
+     '</div>';
+  APP.innerHTML=h;
+}
+function handleRegister(){
+  var n=document.getElementById('regName').value.trim();
+  var d=document.getElementById('regDob').value.trim();
+  var err=document.getElementById('regError');
+  if(!n || !d){ err.style.display='block'; return; }
+  stName=n; stDob=d;
+  showStart();
+}
+
+/* START SCREEN */
+function showStart(){
+  stopTimers();
+  totalTime=3600;
+  var h='';
+  h += ayatHTML();
+  h+='<div class="start-screen">'+
+       '<div class="h header-box">'+
+         logoHTML()+
+         '<h1>'+ui("title")+'</h1>'+
+         '<div class="designer">'+ui("designer")+'</div>'+
+         langBarHTML()+
+         '<div class="ci">'+ui("candidate")+': <strong>'+stName+'</strong> | '+ui("dob")+': <strong>'+stDob+'</strong></div>'+
+       '</div>'+
+       '<div class="start-info">'+
+         '<h3>'+ui("quizInfo")+':</h3>'+
+         '<ul>'+
+           '<li>'+ui("totalTestTime")+'</li>'+
+           '<li>'+ui("eachQuestionTime")+': '+questionTime+' '+t("سیکنڈ | seconds | секунд")+'</li>'+
+           '<li>'+ui("questionsCount")+'</li>'+
+           '<li>'+ui("randomOrder")+'</li>'+
+           '<li>'+ui("controls")+'</li>'+
+           '<li>'+ui("emailInfo")+'</li>'+
+         '</ul>'+
+       '</div>'+
+       '<button class="sb" onclick="startQuiz()">'+ui("startBtn")+'</button>'+
+     '</div>';
+  APP.innerHTML=h;
+}
+
+/* START QUIZ */
+function startQuiz(){
+  shuffleQuestions();
+  cq=0; ua={}; lq={}; fq={}; sr=0;
+  totalTime=3600;
+  startTotalTimer();
+  startQuestionTimer();
+  rq();
+}
+
+/* ON LOAD */
+showRegister();
+</script>
+
+</body>
+</html>
